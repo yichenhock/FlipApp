@@ -1,4 +1,9 @@
 {
   "name": "FlipApp",
-  "displayName": "FlipApp"
+  "displayName": "FlipApp",
+  "androidNavigationBar": {
+    "visible": true,
+    "barStyle": "light-content",
+    "backgroundColor": "#000000"
+  }
 }
