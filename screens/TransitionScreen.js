@@ -9,7 +9,7 @@ import SketchbookScreen from './SketchbookScreen';
 
 function MyTabBar({ state, descriptors, navigation, position }) {
   return (
-    <View style={{ flexDirection: 'row', paddingTop: 20 }}>
+    <View style={{ flexDirection: 'row', paddingTop: 0 }}>
       {state.routes.map((route, index) => {
         const { options } = descriptors[route.key];
         const label =
@@ -55,7 +55,7 @@ function MyTabBar({ state, descriptors, navigation, position }) {
             onLongPress={onLongPress}
             style={{ flex: 1 }}
           >
-            <Animated.Text style={{ opacity }}>{label}</Animated.Text>
+            {/* <Animated.Text style={{ opacity }}>{label}</Animated.Text> */}
           </TouchableOpacity>
         );
       })}

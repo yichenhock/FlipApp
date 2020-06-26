@@ -3,10 +3,10 @@ import {
   StyleSheet,
   View,
   Text,
-  StatusBar,
   TouchableOpacity,
   Dimensions,
   Image,
+  Linking
 } from 'react-native';
 
 class App extends Component {
@@ -19,10 +19,10 @@ class App extends Component {
                 style={{height:150, width:300, resizeMode:'contain'}}
                 source={require('./images/logo.png')}
                 />
-                <Text style={{width: 300,color:"#fff",fontSize: 24, fontFamily:"Rosario-Regular",alignSelf:'center', marginTop:50}}>
+                <Text style={{width: 300,color:"#fff",fontSize: 20, fontFamily:"Rosario-Regular",alignSelf:'center', marginTop:50}}>
                 <Text style={{fontFamily:"Rosario-Bold"}}>FLIP CAM: for artists</Text> is designed for traditional artists to conveviently flip their drawings horizontally in real time. 
                 </Text>
-                <Text style={{width: 300,color:"#fff",fontSize: 24, fontFamily:"Rosario-Regular", alignSelf:'center', marginTop:20}}>
+                <Text style={{width: 300,color:"#fff",fontSize: 20, fontFamily:"Rosario-Regular", alignSelf:'center', marginTop:20}}>
                 Made by <Text style={{fontFamily:"Rosario-Bold"}}>Yi Chen Hock</Text>.
                 </Text>
             </View> 
