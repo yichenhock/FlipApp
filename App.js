@@ -6,3 +6,21 @@ export default class App extends Component {
     return <TransitionScreen/>
   }
 }
+
+
+// func outsidefunc(){}
+
+// class App() {
+
+// func1(){}
+
+// render(){
+//   return(
+//     <View>
+//     <TouchableOpacity onPress={()=>outsidefunc()}/>
+//     <TouchableOpacity onPress={()=>this.func1()}/>
+//     </View>
+//   )
+// }
+
+// }

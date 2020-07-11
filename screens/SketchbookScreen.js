@@ -5,22 +5,38 @@ import { Text,
     StyleSheet, 
     Dimensions, 
     Image,
-    FlatList
+    FlatList, 
+    StatusBar
 } from 'react-native';
 
 function RingBinder(){
   return(
     <Image
-        style={{width:'12%',resizeMode:'contain',alignSelf:'flex-end'}}
+        style={{width:40,resizeMode:'contain',alignSelf:'flex-end'}}
         source={require('./images/icons/book-spiral.png')}
     />
   )
 }
 
-function SketchItem(){
+function BottomSpace(){
   return(
-    <FlatList/>
+    <View style={{
+      backgroundColor: 'transparent', 
+      height: (Dimensions.get('screen').height - Dimensions.get('window').height - StatusBar.currentHeight)*1.2, 
+      width: null
+    }}>
+    </View> 
   )
+}
+
+function SketchItem({item, index}){
+  return(
+    <TouchableOpacity style={{flex:0.5, marginTop:30}}>
+      <View style={{alignSelf: 'center',borderRadius: 5,borderWidth:3, borderColor: 'rgba(77, 107, 103, 1)', height: 150, width: 150}}/>
+      <Text style={{textAlign: 'center',fontFamily:'Rosario-Regular', color:'rgba(77, 107, 103, 1)'}}>{item.title}</Text> 
+    </TouchableOpacity>
+  )
+  
 }
 
 class App extends Component {
@@ -32,7 +48,7 @@ class App extends Component {
 
             <TouchableOpacity style={{ marginLeft:20,resizeMode:'contain',alignSelf:'center'}}>
               <Image
-                style={{width:20,height:20,resizeMode:'contain',alignSelf:'center'}}
+                style={{width:15,height:15,resizeMode:'contain',alignSelf:'center'}}
                 source={require('./images/icons/arrow-left.png')}
               />
             </TouchableOpacity>
@@ -58,25 +74,34 @@ class App extends Component {
           </View>
           
           <View style={{flexDirection:'row'}}>
-            <View style={{flex:1}}>
+            <View style={{flex:1, flexDirection:'column'}}>
               <FlatList
-                data={[{title: 'Title Text', key: 'item1'},{title: 'Thid drawing is cool', key: 'item2'},{title: 'Thidasdfasd', key: 'item3'}]}
+                data={[
+                  {title: 'Title Text', key: 0},
+                  {title: 'Thid drawing is as e  f w e erwer e w wee', key: 1},
+                  {title: 'Thidasdfasd', key: 2},
+                  {title: 'Thidasdfasd', key: 3},
+                  {title: 'Thidasdfasd', key: 4},
+                  {title: 'Thidasdfasd', key: 5},
+                  {title: 'Thidasdfasd', key: 6},
+                  {title: 'Thidasdfasd', key: 7},
+                  {title: 'Thidasdfasd', key: 8},
+                  {title: 'Thidasdfasd', key: 9},
+                  {title: 'Thidasdfasd', key: 10},
+                  {title: 'Thidasdfasd', key: 11},
+                  {title: 'Thidasdfasd', key: 12}
+                ]}
                 keyExtractor={item => item.key}
                 numColumns = {2}
-                renderItem={({item, index}) => (
-                  <TouchableOpacity>
-                    <Text>{item.title}</Text> 
-                  </TouchableOpacity>
-                )}
+                showsVerticalScrollIndicator={false}
+                renderItem={({item, index}) => <SketchItem item={item} index={index} /> }
+                ListFooterComponent = {<View style={{height:100}}/>}
               
               />
 
             </View>
-
-          </View>
-
             {/* Side ring-binder decoration */}
-            <View style={{flexDirection: 'column', width: null, flex:1, justifyContent: 'space-evenly'}}>
+            <View style={{flexDirection: 'column', width: null, justifyContent: 'space-around'}}>
                 <RingBinder/>
                 <RingBinder/>
                 <RingBinder/>
@@ -86,7 +111,15 @@ class App extends Component {
                 <RingBinder/>
                 <RingBinder/>
                 <RingBinder/>
+                <RingBinder/>
+                <View style={{
+                  backgroundColor: 'transparent', 
+                  height: (Dimensions.get('screen').height - Dimensions.get('window').height - StatusBar.currentHeight)*1.2, 
+                  width: null
+                }}>
+    </View> 
             </View>
+          </View>
           
 
         </View>
@@ -109,7 +142,8 @@ const styles = StyleSheet.create({
   
     container: {
       flex: 1, 
-      flexDirection:'column'
+      flexDirection:'column', 
+      backgroundColor:'#fff'
     }
   
   })
