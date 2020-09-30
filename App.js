@@ -1,26 +1,10 @@
 import React, {Component} from 'react';
 import TransitionScreen from './screens/TransitionScreen';
+import MainScreen from './screens/MainScreen';
+import CameraScreen from './screens/CameraScreen';
 
 export default class App extends Component {
   render() {
     return <TransitionScreen/>
   }
 }
-
-
-// func outsidefunc(){}
-
-// class App() {
-
-// func1(){}
-
-// render(){
-//   return(
-//     <View>
-//     <TouchableOpacity onPress={()=>outsidefunc()}/>
-//     <TouchableOpacity onPress={()=>this.func1()}/>
-//     </View>
-//   )
-// }
-
-// }

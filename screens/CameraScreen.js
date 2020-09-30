@@ -11,8 +11,12 @@ import {
 } from 'react-native';
 import {RNCamera} from 'react-native-camera';
 // import GL from "gl-react";
-import Modal from 'react-native-modalbox';
-import { useNavigation } from '@react-navigation/native';
+// import {dirPictures} from './dirStroage';
+const moment = require('moment');
+import Icon from 'react-native-vector-icons/SimpleLineIcons'
+
+import NavigationService from './NavigationService';
+
 // import{Grayscale} from 'react-native-color-matrix-image-filters';
 // import GrayscaleShader from './GrayscaleShader';
 // const window = Dimensions.get('window');
@@ -26,7 +30,7 @@ import { useNavigation } from '@react-navigation/native';
 //       <Image
 //         style={{height:40, width: 40, resizeMode:'contain', marginTop:5}}
 //         source={require('./images/icons/book.png')}
-//       />
+//       />-
 //     </TouchableOpacity>
 //   );
   
@@ -108,6 +112,19 @@ class App extends Component {
     console.log(this.state.cameraType)
   }
 
+  saveImage = async filePath => {
+    try { 
+      //set new image and filepath
+      const newImageName = `${moment().format('DDMMYY_HHmmSSS')}.jpg`;
+      const newFilepath = `${dirPictures}/${newImageName}`;
+      // move and save image to new filepath
+      const imageMoved = await moveAttachment(filePath, newFilepath);
+      console.log('image moved', imageMoved);
+    } catch (error) {
+      console.log(error);
+    }
+  }
+  
   render(){
     const transform = [{scaleX: this.scaleX}];
     
@@ -142,66 +159,36 @@ class App extends Component {
                 
               </TouchableOpacity>
           
-          <View style={{position:'absolute', marginTop:20}}>
-            <TouchableOpacity style={{alignSelf:'center', paddingHorizontal:25}} >
-                <View style={{flexDirection:'column', height:30, justifyContent:'space-evenly'}}>
-                  <View style={{borderRadius: 400, height: 5, width: 5, backgroundColor: '#fff'}}/>
-                  <View style={{borderRadius: 400, height: 5, width: 5, backgroundColor: '#fff'}}/>
-                  <View style={{borderRadius: 400, height: 5, width: 5, backgroundColor: '#fff'}}/>
-                </View>
+          <View style={{position:'absolute', marginTop: 8, marginLeft: 4}}>
 
-              </TouchableOpacity>
+              <Icon.Button
+                name="info"
+                backgroundColor = "transparent"
+                style = {[{backgroundColor: "transparent"}]}
+                background = "transparent"
+                size={30}
+                onPress={() => {NavigationService.navigate("About")}}>
+              </Icon.Button>
           </View>
-          
-          {/* <Modal
-            style={{height:40}}
-
-          > //////onPress= {() => this.refs.modal1.open()}
-            <View/>
-          </Modal> */}
 
           
           <View style={{position:'absolute', marginTop:15, alignSelf:'flex-end'}}>
-            <TouchableOpacity>
+            <TouchableOpacity onPress = {this.switchCamera}>
               <Image
                 style={{width:40, height: 40, resizeMode: 'contain',marginRight:15}}
-                source={require('./images/icons/bw.png')}
+                source={require('./images/icons/switch-camera.png')}
               />
             </TouchableOpacity>
           </View>
           
           <View style={{flexDirection: 'row', width: Dimensions.get('window').width, position:'absolute', alignSelf:'center', bottom:25, justifyContent:'space-evenly'}}>
-            <TouchableOpacity style={{alignSelf:'center'}}>
-              <Image
-                style={{height:40, width: 40, resizeMode:'contain'}}
-                source={require('./images/icons/draw.png')}
-              />
-            </TouchableOpacity>
             <TouchableOpacity 
             style={{alignSelf:'center'}}
-            onPress = {this.switchCamera}
+            
             >
-              <Image
-              style={{height:40, width: 40, resizeMode:'contain'}}
-              source={require('./images/icons/switch-camera.png')}
-              />
-            </TouchableOpacity>
-            <TouchableOpacity style={{alignSelf:'center'}}>
               <Image
                 style={{height:70, width:70}}
                 source={require('./images/icons/shutter.png')}
-              />
-            </TouchableOpacity>
-            <TouchableOpacity style={{alignSelf:'center'}}>
-              <Image
-                style={{height:40, width: 40, resizeMode:'contain'}}
-                source={require('./images/icons/split-screen.png')}
-              />
-            </TouchableOpacity>
-            <TouchableOpacity style={{alignSelf:'center'}} onPress={() => useNavigation().navigate('Sketchbook')}>
-              <Image
-                style={{height:40, width: 40, resizeMode:'contain', marginTop:5}}
-                source={require('./images/icons/book.png')}
               />
             </TouchableOpacity>
           </View>
@@ -242,7 +229,6 @@ class App extends Component {
     
 
   }
-
 
 }
 
