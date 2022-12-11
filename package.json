@@ -16,7 +16,7 @@
     "@react-navigation/material-top-tabs": "^5.2.12",
     "@react-navigation/native": "^5.6.1",
     "expo": "^38.0.3",
-    "expo-cli": "^3.21.10",
+    "expo-cli": "^6.0.8",
     "expo-file-system": "~9.0.1",
     "expo-font": "~8.2.1",
     "expo-splash-screen": "~0.3.1",
